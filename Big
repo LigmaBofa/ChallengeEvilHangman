@@ -1,24 +1,58 @@
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
 public class Challenge {
-    public static void main (String args[]){
-        Scanner input = new Scanner (System.in);
+    public static void main (String args[]) throws FileNotFoundException{
+        Scanner input = new Scanner(new File("dictionary.txt"));
         
+        ArrayList<String> words = new ArrayList<String>();
+        
+        int c = 0;
+        
+        while(input.hasNextLine()) {
+        	words.add(input.nextLine());
+        	System.out.println(words.get(c));
+        	c++;
+        }
+        
+        /*
         try
         {
             FileReader fr = new FileReader("dictionary.txt");
             BufferedReader br = new BufferedReader(fr);
             String line;
             line = br.readLine();
+            words.add(line);
             
-           
             System.out.println(line);
 
         }
             catch(IOException e){}
+         */   
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("WELCOME TO EVIL HANGMAN!");
+        System.out.println("Enter the length of the word:");
+        int length = sc.nextInt();
+        
+        ArrayList<String> newWords = new ArrayList<String>();
+        
+        for(int i = 0; i < words.size(); i++) {
+        	String temp = words.get(i);
+        	int tempLength = temp.length();
+        	
+        	if(tempLength == length) {
+        		newWords.add(words.get(i));
+        	}
+        }
+        
+        for(int i = 0; i < newWords.size(); i++) {
+        	System.out.println(newWords.get(i));
+        }
         
         
     }
