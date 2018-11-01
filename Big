@@ -54,6 +54,30 @@ public class Challenge {
         	System.out.println(newWords.get(i));
         }
         
-        
+        for(int i = 0; i < guesses; i++) {
+        	
+        	System.out.println("Enter a letter to guess:");
+        	String letter = sc.next();
+        	
+        	while(letter.length() > 1){
+        		System.out.println("Please enter again, invalid input:");
+        		letter = sc.next();
+        	}
+        	
+        	char letter2 = letter.charAt(0);
+        	
+        	int numberLetter = 0;
+        	
+        	for(int j = 0; j < newWords.size(); j++) {
+        		for(int k = 0; k < newWords.get(i).length(); k++) {
+        			if(newWords.get(j).charAt(k) == letter2) {
+        				numberLetter++;
+        			}
+        		}
+        	}
+        	
+        	
+        	
+        }
     }
 }
