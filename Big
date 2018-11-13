@@ -6,41 +6,58 @@ import java.io.IOException;
 import java.util.*;
 
 public class Challenge {
-    public static void main (String args[]) throws FileNotFoundException{
-        Scanner input = new Scanner(new File("dictionary.txt"));
+    public static void main (String args[]) throws FileNotFoundException, IOException{
+        //Scanner input = new Scanner(new File("dictionary.txt"));
+        Scanner sc = new Scanner(System.in);
         
-        ArrayList<String> words = new ArrayList<String>();
+        ArrayList<String> words = new ArrayList();
+        int totalWords = 0;
+        
+        System.out.println("WELCOME TO EVIL HANGMAN!");
+        System.out.println("Enter the length of the word:");
+        int length = sc.nextInt(); //first ask them for the length of the word
+        while (length <1 || length > 15){
+            System.out.println("Invalid length. Please enter another length."); //validation for length (searched it up, pretty sure max is 15
+            length = sc.nextInt();
+        }
         
         int c = 0;
         
+        /*
         while(input.hasNextLine()) {
         	words.add(input.nextLine());
         	System.out.println(words.get(c));
         	c++;
-        }
+        }*/
         
-        /*
+        
         try
         {
             FileReader fr = new FileReader("dictionary.txt");
             BufferedReader br = new BufferedReader(fr);
-            String line;
-            line = br.readLine();
-            words.add(line);
             
-            System.out.println(line);
+            String str; 
+            while ((str = br.readLine()) != null){ //saves the read line into str
+                if (str.length() == length) words.add(str); 
+//reads through the entire list and only adds them if they are of the certain length
+            }
+            
 
         }
             catch(IOException e){}
-         */   
+        totalWords = words.size(); //finds the current length of the array list of the total words
         
-        Scanner sc = new Scanner(System.in);
-        System.out.println("WELCOME TO EVIL HANGMAN!");
-        System.out.println("Enter the length of the word:");
-        int length = sc.nextInt();
+        System.out.println("How many guesses would you like?");
+        int guesses = sc.nextInt(); //prompt and save total number of guesses
         
-        ArrayList<String> newWords = new ArrayList<String>();
+        boolean counterWords = false;
+        System.out.println("Would you like a running total of the number of words remaining? y/n");
+        String choice = sc.next();
+        if (choice.equals("y")) counterWords = true; //if they do want a running counter of total words left
         
+        
+        
+        /*
         for(int i = 0; i < words.size(); i++) {
         	String temp = words.get(i);
         	int tempLength = temp.length();
@@ -53,8 +70,11 @@ public class Challenge {
         for(int i = 0; i < newWords.size(); i++) {
         	System.out.println(newWords.get(i));
         }
+        */
         
-        for(int i = 0; i < guesses; i++) {
+        ArrayList<String> newWords = new ArrayList<String>();
+        
+        for(int i = 0; i < guesses; i++) { //for guessing letters
         	
         	System.out.println("Enter a letter to guess:");
         	String letter = sc.next();
